@@ -41,6 +41,11 @@ void spindle_init()
     #else
       SPINDLE_DIRECTION_DDR |= (1<<SPINDLE_DIRECTION_BIT); // Configure as output pin.
     #endif
+      
+    #ifndef ENABLE_M7
+    LASER_ENABLE_DDR |= (1 << LASER_ENABLE_BIT); // Configure as output pin.
+    LASER_ENABLE_PORT |= (1<<LASER_ENABLE_BIT); // Set pin to high
+    #endif
 
     pwm_gradient = SPINDLE_PWM_RANGE/(settings.rpm_max-settings.rpm_min);
 
@@ -93,6 +98,9 @@ void spindle_stop()
 {
   #ifdef VARIABLE_SPINDLE
     SPINDLE_TCCRA_REGISTER &= ~(1<<SPINDLE_COMB_BIT); // Disable PWM. Output voltage is zero.
+    #ifndef ENABLE_M7
+        LASER_ENABLE_PORT |= (1<<LASER_ENABLE_BIT); // Set pin to high
+    #endif
     #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
       #ifdef INVERT_SPINDLE_ENABLE_PIN
         SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);  // Set pin to high
@@ -126,12 +134,21 @@ void spindle_stop()
         #else
           SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
         #endif
+        #ifndef ENABLE_M7
+            LASER_ENABLE_PORT &= ~(1<<LASER_ENABLE_BIT); // Set pin to low
+        #endif
       }
     #else
       if (pwm_value == SPINDLE_PWM_OFF_VALUE) {
         SPINDLE_TCCRA_REGISTER &= ~(1<<SPINDLE_COMB_BIT); // Disable PWM. Output voltage is zero.
+        #ifndef ENABLE_M7
+            LASER_ENABLE_PORT |= (1<<LASER_ENABLE_BIT); // Set pin to high
+        #endif
       } else {
         SPINDLE_TCCRA_REGISTER |= (1<<SPINDLE_COMB_BIT); // Ensure PWM output is enabled.
+        #ifndef ENABLE_M7
+            LASER_ENABLE_PORT &= ~(1<<LASER_ENABLE_BIT); // Set pin to low
+        #endif
       }
     #endif
   }

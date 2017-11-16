@@ -65,6 +65,77 @@
   #define DEFAULT_HOMING_PULLOFF 1.0 // mm
 #endif
 
+#ifdef DEFAULTS_LASER_CUTTER
+  // Grbl generic default settings. Should work across different machines.
+  #define DEFAULT_X_STEPS_PER_MM 157.575
+  #define DEFAULT_Y_STEPS_PER_MM 157.575
+  #define DEFAULT_Z_STEPS_PER_MM 10
+  #define DEFAULT_X_MAX_RATE 8000.0 // mm/min
+  #define DEFAULT_Y_MAX_RATE 8000.0 // mm/min
+  #define DEFAULT_Z_MAX_RATE 10.0 // mm/min
+  #define DEFAULT_X_ACCELERATION (500.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_Y_ACCELERATION (500.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_Z_ACCELERATION (500.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_X_MAX_TRAVEL 900.0 // mm NOTE: Must be a positive value.
+  #define DEFAULT_Y_MAX_TRAVEL 600.0 // mm NOTE: Must be a positive value.
+  #define DEFAULT_Z_MAX_TRAVEL 10.0 // mm NOTE: Must be a positive value.
+  #define DEFAULT_SPINDLE_RPM_MAX 1000.0 // rpm
+  #define DEFAULT_SPINDLE_RPM_MIN 0.0 // rpm
+  #define DEFAULT_STEP_PULSE_MICROSECONDS 10
+  #define DEFAULT_STEPPING_INVERT_MASK 0
+  #define DEFAULT_DIRECTION_INVERT_MASK ((1<<X_AXIS)) 
+  #define DEFAULT_STEPPER_IDLE_LOCK_TIME 250 // msec (0-254, 255 keeps steppers enabled)
+  #define DEFAULT_STATUS_REPORT_MASK 1 // MPos enabled
+  #define DEFAULT_JUNCTION_DEVIATION 0.01 // mm
+  #define DEFAULT_ARC_TOLERANCE 0.002 // mm
+  #define DEFAULT_REPORT_INCHES 0 // false
+  #define DEFAULT_INVERT_ST_ENABLE 0 // false
+  #define DEFAULT_INVERT_LIMIT_PINS 1 // false
+  #define DEFAULT_SOFT_LIMIT_ENABLE 0 // false
+  #define DEFAULT_HARD_LIMIT_ENABLE 1  // false
+  #define DEFAULT_INVERT_PROBE_PIN 0 // false
+  #define DEFAULT_LASER_MODE 1 // true
+  #define DEFAULT_HOMING_ENABLE 1  // false
+  #define DEFAULT_HOMING_DIR_MASK ((1<<X_AXIS))  // move positive dir
+  #define DEFAULT_HOMING_FEED_RATE 500.0 // mm/min
+  #define DEFAULT_HOMING_SEEK_RATE 5000.0 // mm/min
+  #define DEFAULT_HOMING_DEBOUNCE_DELAY 250 // msec (0-65k)
+  #define DEFAULT_HOMING_PULLOFF 5.0 // mm
+#endif
+
+#ifdef DEFAULTS_OXCNC
+  #define DEFAULT_X_STEPS_PER_MM 26.670
+  #define DEFAULT_Y_STEPS_PER_MM 26.670
+  #define DEFAULT_Z_STEPS_PER_MM 50
+  #define DEFAULT_X_MAX_RATE 500.0 // mm/min
+  #define DEFAULT_Y_MAX_RATE 500.0 // mm/min
+  #define DEFAULT_Z_MAX_RATE 500.0 // mm/min
+  #define DEFAULT_X_ACCELERATION (10.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_Y_ACCELERATION (10.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_Z_ACCELERATION (10.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+  #define DEFAULT_X_MAX_TRAVEL 500.0 // mm
+  #define DEFAULT_Y_MAX_TRAVEL 750.0 // mm
+  #define DEFAULT_Z_MAX_TRAVEL 80.0 // mm
+  #define DEFAULT_STEP_PULSE_MICROSECONDS 10
+  #define DEFAULT_STEPPING_INVERT_MASK 0
+  #define DEFAULT_DIRECTION_INVERT_MASK 0
+  #define DEFAULT_STEPPER_IDLE_LOCK_TIME 25 // msec (0-254, 255 keeps steppers enabled)
+  #define DEFAULT_STATUS_REPORT_MASK ((BITFLAG_RT_STATUS_MACHINE_POSITION)|(BITFLAG_RT_STATUS_WORK_POSITION))
+  #define DEFAULT_JUNCTION_DEVIATION 0.02 // mm
+  #define DEFAULT_ARC_TOLERANCE 0.002 // mm
+  #define DEFAULT_REPORT_INCHES 0 // false
+  #define DEFAULT_INVERT_ST_ENABLE 0 // false
+  #define DEFAULT_INVERT_LIMIT_PINS 0 // false
+  #define DEFAULT_SOFT_LIMIT_ENABLE 0 // false
+  #define DEFAULT_HARD_LIMIT_ENABLE 0  // false
+  #define DEFAULT_HOMING_ENABLE 0  // false
+  #define DEFAULT_HOMING_DIR_MASK 0 // move positive dir
+  #define DEFAULT_HOMING_FEED_RATE 25.0 // mm/min
+  #define DEFAULT_HOMING_SEEK_RATE 500.0 // mm/min
+  #define DEFAULT_HOMING_DEBOUNCE_DELAY 250 // msec (0-65k)
+  #define DEFAULT_HOMING_PULLOFF 1.0 // mm
+#endif
+
 #ifdef DEFAULTS_SHERLINE_5400
   // Description: Sherline 5400 mill with three NEMA 23 Keling  KL23H256-21-8B 185 oz-in stepper motors,
   // driven by three Pololu A4988 stepper drivers with a 30V, 6A power supply at 1.5A per winding.

@@ -61,7 +61,7 @@
   #define LIMIT_PIN        PINB
   #define LIMIT_PORT       PORTB
   #define X_LIMIT_BIT      1  // Uno Digital Pin 9
-  #define Y_LIMIT_BIT      2  // Uno Digital Pin 10
+  #define Y_LIMIT_BIT      2  // Uno Digital Pin 13
   #ifdef VARIABLE_SPINDLE // Z Limit pin and spindle enabled swapped to access hardware PWM on Pin 11.
     #define Z_LIMIT_BIT	   4 // Uno Digital Pin 12
   #else
@@ -95,10 +95,14 @@
   // Define flood and mist coolant enable output pins.
   #define COOLANT_FLOOD_DDR   DDRC
   #define COOLANT_FLOOD_PORT  PORTC
-  #define COOLANT_FLOOD_BIT   3  // Uno Analog Pin 3
+  #define COOLANT_FLOOD_BIT   3  // Uno Analog Pin 2
   #define COOLANT_MIST_DDR   DDRC
   #define COOLANT_MIST_PORT  PORTC
   #define COOLANT_MIST_BIT   4  // Uno Analog Pin 4
+  
+  #define LASER_ENABLE_DDR   DDRC
+  #define LASER_ENABLE_PORT  PORTC
+  #define LASER_ENABLE_BIT   4  // Uno Analog Pin 4
 
   // Define user-control controls (cycle start, reset, feed hold) input pins.
   // NOTE: All CONTROLs pins must be on the same port and not on a port with other input pins (limits).
@@ -138,7 +142,7 @@
   // Prescaled, 8-bit Fast PWM mode.
   #define SPINDLE_TCCRA_INIT_MASK   ((1<<WGM20) | (1<<WGM21))  // Configures fast PWM mode.
   // #define SPINDLE_TCCRB_INIT_MASK   (1<<CS20)               // Disable prescaler -> 62.5kHz
-  // #define SPINDLE_TCCRB_INIT_MASK   (1<<CS21)               // 1/8 prescaler -> 7.8kHz (Used in v0.9)
+  //#define SPINDLE_TCCRB_INIT_MASK   (1<<CS21)               // 1/8 prescaler -> 7.8kHz (Used in v0.9)
   // #define SPINDLE_TCCRB_INIT_MASK   ((1<<CS21) | (1<<CS20)) // 1/32 prescaler -> 1.96kHz
   #define SPINDLE_TCCRB_INIT_MASK      (1<<CS22)               // 1/64 prescaler -> 0.98kHz (J-tech laser)
 
